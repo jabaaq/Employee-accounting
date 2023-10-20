@@ -1,4 +1,4 @@
-import "./search-panel";
+import "./search-panel.css";
 
 function SearchPanel() {
   return (
