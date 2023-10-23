@@ -4,9 +4,21 @@ import { Component } from "react";
 class EmployeesListItem extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      increase: false,
+    };
   }
+
+  onIncrease = () => {
+    this.setState(({ increase }) => ({
+      increase: !increase, //set a new property 'increase' which will be the opposite of what was before
+    }));
+  };
+
   render() {
-    const { name, salary, increase } = this.props;
+    const { name, salary } = this.props; // deleted the variable 'increase' because it comes from this.state
+    const { increase } = this.state;
     let classNames = "list-group-item d-flex justify-content-between";
 
     if (increase) {
@@ -22,7 +34,11 @@ class EmployeesListItem extends Component {
           defaultValue={salary + "$"}
         />
         <div className="d-flex justify-content-center align-items-center">
-          <button type="button" className="btn-cookie btn-sm ">
+          <button
+            type="button"
+            className="btn-cookie btn-sm "
+            onClick={this.onIncrease}
+          >
             <i className="fas fa-cookie"></i>
           </button>
 
