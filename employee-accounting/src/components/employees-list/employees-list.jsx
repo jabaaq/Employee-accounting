@@ -8,6 +8,7 @@ function EmployeesList({ data }) {
         name={item.name}
         salary={item.salary}
         increase={item.increase} //I can also use:  {...item}
+        key={item.id}
       />
     );
   });
