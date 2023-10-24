@@ -1,7 +1,8 @@
 import { EmployeesListItem } from "../employees-list-item/employees-list-item";
 import "./employees-list.css";
 
-function EmployeesList({ data }) {
+function EmployeesList({ data, deleteById }) {
+  //use this (onDelete from app.jsx) function here
   const elements = data.map((item) => {
     return (
       <EmployeesListItem
@@ -9,6 +10,7 @@ function EmployeesList({ data }) {
         salary={item.salary}
         increase={item.increase} //I can also use:  {...item}
         key={item.id}
+        onDelete={() => deleteById(item.id)} // created a function onDelete that I call in EmployeesListItem -> props
       />
     );
   });

@@ -15,12 +15,12 @@ function App() {
   return (
     <div className="app">
       <AppInfo />
-
       <div className="search-panel">
         <SearchPanel />
         <AppFilter />
       </div>
-      <EmployeesList data={data} />
+      <EmployeesList data={data} deleteById={(id) => console.log(id)} />
+      {/*provided this (deleteById) Prop with a function, now i can use it in employees.list.jsx */}
       <EmployeesAddForm />
     </div>
   );

@@ -6,7 +6,7 @@ class EmployeesAddForm extends Component {
     super(props);
     this.state = {
       name: "",
-      salary: 0,
+      salary: "",
     };
   }
 
@@ -18,6 +18,7 @@ class EmployeesAddForm extends Component {
   };
 
   render() {
+    const { name, salary } = this.state;
     return (
       <div className="app-add-form">
         <h3>Add a new employee</h3>
@@ -27,6 +28,7 @@ class EmployeesAddForm extends Component {
             className="form-control new-post-label"
             placeholder="What is his/her name?"
             name="name" //I do this so that we have these attributes, their value matches our state.
+            value={name}
             onChange={this.onValueChange}
           />
           <input
@@ -34,6 +36,7 @@ class EmployeesAddForm extends Component {
             className="form-control new-post-label"
             placeholder="Salary in $?"
             name="salary"
+            value={salary}
             onChange={this.onValueChange}
           />
 
