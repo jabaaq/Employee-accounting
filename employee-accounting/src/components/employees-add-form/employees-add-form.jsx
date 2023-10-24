@@ -13,11 +13,12 @@ class EmployeesAddForm extends Component {
   onValueChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
-      // in this case, instead of this prob 'prop: e.target.value' I can write that I will have [e.target.name ]: e.target.value
+      // in this case, instead of this prob 'prop: e.target.value' I can write that I will have [e.target.name]: e.target.value
     });
   };
 
   render() {
+    const { onSubmitForm } = this.props;
     const { name, salary } = this.state;
     return (
       <div className="app-add-form">
@@ -40,7 +41,14 @@ class EmployeesAddForm extends Component {
             onChange={this.onValueChange}
           />
 
-          <button type="submit" className="btn btn-outline-light">
+          <button
+            type="submit"
+            className="btn btn-outline-light"
+            onClick={(e) => {
+              this.setState({ name: "", salary: "" }); //// Reset the input values
+              onSubmitForm(e, name, salary);
+            }}
+          >
             Add
           </button>
         </form>

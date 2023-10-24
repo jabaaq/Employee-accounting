@@ -26,6 +26,20 @@ class App extends Component {
     });
   };
 
+  addItem = (e, name, salary) => {
+    e.preventDefault();
+    this.setState(({ data }) => {
+      const newData = [...data];
+      newData.push({
+        name: name,
+        salary: salary,
+        increase: false,
+        id: Math.floor(Math.random() * 1000),
+      });
+      return { data: newData };
+    });
+  };
+
   render() {
     return (
       <div className="app">
@@ -36,10 +50,9 @@ class App extends Component {
         </div>
         <EmployeesList data={this.state.data} deleteById={this.deleteItem} />
         {/*provided this (deleteById) Prop with a function, now i can use it in employees.list.jsx */}
-        <EmployeesAddForm />
+        <EmployeesAddForm onSubmitForm={this.addItem} />
       </div>
     );
   }
 }
-
 export { App };
