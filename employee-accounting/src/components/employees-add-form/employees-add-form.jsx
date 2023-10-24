@@ -4,7 +4,19 @@ import "./employees-add-form.css";
 class EmployeesAddForm extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      name: "",
+      salary: 0,
+    };
   }
+
+  onValueChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+      // in this case, instead of this prob 'prop: e.target.value' I can write that I will have [e.target.name ]: e.target.value
+    });
+  };
+
   render() {
     return (
       <div className="app-add-form">
@@ -14,11 +26,15 @@ class EmployeesAddForm extends Component {
             type="text"
             className="form-control new-post-label"
             placeholder="What is his/her name?"
+            name="name" //I do this so that we have these attributes, their value matches our state.
+            onChange={this.onValueChange}
           />
           <input
             type="number"
             className="form-control new-post-label"
             placeholder="Salary in $?"
+            name="salary"
+            onChange={this.onValueChange}
           />
 
           <button type="submit" className="btn btn-outline-light">
