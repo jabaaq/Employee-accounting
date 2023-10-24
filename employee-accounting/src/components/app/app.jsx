@@ -18,6 +18,14 @@ class App extends Component {
     };
   }
 
+  deleteItem = (id) => {
+    this.setState(({ data }) => {
+      return {
+        data: data.filter((item) => item.id !== id), //If the condition is true, the element is included in the new filtered array. If the condition is false, the element is excluded from the new array.
+      };
+    });
+  };
+
   render() {
     return (
       <div className="app">
@@ -26,10 +34,7 @@ class App extends Component {
           <SearchPanel />
           <AppFilter />
         </div>
-        <EmployeesList
-          data={this.state.data}
-          deleteById={(id) => console.log(id)}
-        />
+        <EmployeesList data={this.state.data} deleteById={this.deleteItem} />
         {/*provided this (deleteById) Prop with a function, now i can use it in employees.list.jsx */}
         <EmployeesAddForm />
       </div>
