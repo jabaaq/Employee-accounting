@@ -1,7 +1,7 @@
-import { EmployeesListItem } from "../employees-list-item/employees-list-item";
-import "./employees-list.css";
+import {EmployeesListItem} from '../employees-list-item/employees-list-item';
+import './employees-list.css';
 
-function EmployeesList({ data, deleteById }) {
+function EmployeesList({data, deleteById, onToggleIncrease, onToggleRise}) {
   //use this (onDelete from app.jsx) function here
   const elements = data.map((item) => {
     return (
@@ -10,7 +10,10 @@ function EmployeesList({ data, deleteById }) {
         salary={item.salary}
         increase={item.increase} //I can also use:  {...item}
         key={item.id}
+        like={item.like}
         onDelete={() => deleteById(item.id)} // created a function onDelete that I call in EmployeesListItem -> props
+        onToggleIncrease={() => onToggleIncrease(item.id)}
+        onToggleRise={() => onToggleRise(item.id)}
       />
     );
   });
@@ -18,4 +21,4 @@ function EmployeesList({ data, deleteById }) {
   return <ul className="app-list list-group">{elements}</ul>;
 }
 
-export { EmployeesList };
+export {EmployeesList};
