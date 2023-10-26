@@ -1,7 +1,6 @@
 import './app-info.css';
 
 const AppInfo = ({employees, increasedEmployees}) => {
-  console.log(employees, increasedEmployees);
   return (
     <div className="app-info">
       <h1>Employee accounting of company N</h1>

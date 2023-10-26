@@ -66,7 +66,15 @@ class App extends Component {
   };
 
   onToggleRise = (id) => {
-    console.log(`Like this ${id}`);
+    this.setState(({data}) => ({
+      //Another way to write the above code
+      data: data.map((item) => {
+        if (item.id === id) {
+          return {...item, like: !item.like}; //Returns a new object !
+        }
+        return item;
+      }),
+    }));
   };
 
   render() {
