@@ -1,12 +1,12 @@
-import { Component } from "react";
-import "./employees-add-form.css";
+import {Component} from 'react';
+import './employees-add-form.css';
 
 class EmployeesAddForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
-      salary: "",
+      name: '',
+      salary: '',
     };
   }
 
@@ -18,8 +18,8 @@ class EmployeesAddForm extends Component {
   };
 
   render() {
-    const { onSubmitForm } = this.props;
-    const { name, salary } = this.state;
+    const {onSubmitForm} = this.props;
+    const {name, salary} = this.state;
     return (
       <div className="app-add-form">
         <h3>Add a new employee</h3>
@@ -45,16 +45,18 @@ class EmployeesAddForm extends Component {
             type="submit"
             className="btn btn-outline-light"
             onClick={(e) => {
-              this.setState({ name: "", salary: "" }); //// Reset the input values
+              this.setState({name: '', salary: ''}); //// Reset the input values
               onSubmitForm(e, name, salary);
-            }}
-          >
+            }}>
             Add
           </button>
         </form>
+        <p id="inputError" className="hide">
+          Please fill out all required fields.
+        </p>
       </div>
     );
   }
 }
 
-export { EmployeesAddForm };
+export {EmployeesAddForm};

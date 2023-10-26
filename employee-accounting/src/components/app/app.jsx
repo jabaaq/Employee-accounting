@@ -28,17 +28,25 @@ class App extends Component {
 
   addItem = (e, name, salary) => {
     e.preventDefault();
-    this.setState(({data}) => {
-      const newData = [...data];
-      newData.push({
-        name: name,
-        salary: salary,
-        increase: false,
-        like: false,
-        id: Math.floor(Math.random() * 1000),
+    const inputError = document.querySelector('#inputError');
+    if (name.length !== 0 && salary.length !== 0) {
+      this.setState(({data}) => {
+        inputError.classList.add('hide');
+        inputError.classList.remove('show');
+        const newData = [...data];
+        newData.push({
+          name: name,
+          salary: salary,
+          increase: false,
+          like: false,
+          id: Math.floor(Math.random() * 1000),
+        });
+        return {data: newData};
       });
-      return {data: newData};
-    });
+    } else {
+      inputError.classList.add('show');
+      inputError.classList.remove('hide');
+    }
   };
 
   onToggleIncrease = (id) => {
