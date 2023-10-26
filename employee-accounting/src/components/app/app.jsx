@@ -5,7 +5,6 @@ import {AppFilter} from '../app-filter/app-filter';
 import {EmployeesList} from '../employees-list/employees-list';
 import {EmployeesAddForm} from '../employees-add-form/employees-add-form';
 import './app.css';
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -15,6 +14,7 @@ class App extends Component {
         {name: 'Rylee Monroe', salary: 3000, increase: true, like: false, id: 2},
         {name: 'Carlie Austin', salary: 4000, increase: false, like: false, id: 3},
       ],
+      term: '',
     };
   }
 
@@ -85,9 +85,23 @@ class App extends Component {
     }));
   };
 
+  searchEmployee = (items, term) => {
+    if (term.length === 0) {
+      return items; //if this line that displays the search does not contain anything - return item array
+    }
+
+    return items.filter((item) => {
+      return item.name.includes(term); //same as return item.name.indexOf(term) > -1;
+      //filter and return only those elements that pass this check.
+    });
+  };
+
   render() {
+    const {data, term} = this.state;
     const employees = this.state.data.length;
     const increasedEmployees = this.state.data.filter((item) => item.increase).length;
+    const visibleData = this.searchEmployee(data, term);
+
     return (
       <div className="app">
         <AppInfo employees={employees} increasedEmployees={increasedEmployees} />
@@ -96,7 +110,7 @@ class App extends Component {
           <AppFilter />
         </div>
         <EmployeesList
-          data={this.state.data}
+          data={visibleData} //here there will still be an array only filtered by the line that comes to us from another component
           deleteById={this.deleteItem}
           onToggleIncrease={this.onToggleIncrease}
           onToggleRise={this.onToggleRise}

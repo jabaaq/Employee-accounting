@@ -1,13 +1,11 @@
-import "./search-panel.css";
+import {Component} from 'react';
+import './search-panel.css';
 
-function SearchPanel() {
-  return (
-    <input
-      type="text"
-      className="form-control search-input"
-      placeholder="Find an employee.."
-    />
-  );
+class SearchPanel extends Component {
+  render() {
+    return (
+      <input type="text" className="form-control search-input" placeholder="Find an employee.." />
+    );
+  }
 }
-
-export { SearchPanel };
+export {SearchPanel};
