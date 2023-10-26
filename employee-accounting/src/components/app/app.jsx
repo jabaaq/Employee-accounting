@@ -59,7 +59,7 @@ class App extends Component {
       return {
         data: newArr,
       };
-      /*
+      /*same as:
        this.setState(({data}) => ({   //Another way to write the above code
       data: data.map((item) => {
         if (item.id === id) {
@@ -91,9 +91,14 @@ class App extends Component {
     }
 
     return items.filter((item) => {
-      return item.name.includes(term); //same as return item.name.indexOf(term) > -1;
+      return item.name.toUpperCase().includes(term.toUpperCase()); //same as return item.name.indexOf(term) > -1;
       //filter and return only those elements that pass this check.
     });
+  };
+
+  onUpdateSearch = (term) => {
+    //Now this method, just like before, we can pass the <SearchPanel /> component
+    this.setState({term}); //same as this.setState =  ({term};
   };
 
   render() {
@@ -106,7 +111,7 @@ class App extends Component {
       <div className="app">
         <AppInfo employees={employees} increasedEmployees={increasedEmployees} />
         <div className="search-panel">
-          <SearchPanel />
+          <SearchPanel onUpdateSearch={this.onUpdateSearch} />
           <AppFilter />
         </div>
         <EmployeesList
