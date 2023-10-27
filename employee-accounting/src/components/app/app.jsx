@@ -15,6 +15,7 @@ class App extends Component {
         {name: 'Carlie Austin', salary: 4000, increase: false, like: false, id: 3},
       ],
       term: '',
+      filter: '',
     };
   }
 
@@ -98,14 +99,27 @@ class App extends Component {
 
   onUpdateSearch = (term) => {
     //Now this method, just like before, we can pass the <SearchPanel /> component
-    this.setState({term}); //same as this.setState =  ({term};
+    this.setState({term}); //same as this.setState =  ({term : term});
+  };
+
+  filterPost = (items, filter) => {
+    switch (filter) {
+      case 'rise':
+        return items.filter((item) => item.like); //item.like === true
+        break;
+      case 'moreThen1000':
+        return items.filter((item) => item.salary > 1000);
+      default:
+        return items; //do not filter these elements
+        break;
+    }
   };
 
   render() {
-    const {data, term} = this.state;
+    const {data, term, filter} = this.state;
     const employees = this.state.data.length;
     const increasedEmployees = this.state.data.filter((item) => item.increase).length;
-    const visibleData = this.searchEmployee(data, term);
+    const visibleData = this.filterPost(this.searchEmployee(data, term), filter); //combined two functions at once, because filters can also be applied while searching, that's why I putted this.searchEmployee(data, term) as an array. And it turns out that all the data displayed on the page is double filtered
 
     return (
       <div className="app">
