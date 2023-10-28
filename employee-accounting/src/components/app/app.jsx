@@ -15,7 +15,7 @@ class App extends Component {
         {name: 'Carlie Austin', salary: 4000, increase: false, like: false, id: 3},
       ],
       term: '',
-      filter: '',
+      filter: 'all',
     };
   }
 
@@ -115,6 +115,10 @@ class App extends Component {
     }
   };
 
+  onFilterSelect = (filter) => {
+    this.setState({filter});
+  };
+
   render() {
     const {data, term, filter} = this.state;
     const employees = this.state.data.length;
@@ -126,7 +130,7 @@ class App extends Component {
         <AppInfo employees={employees} increasedEmployees={increasedEmployees} />
         <div className="search-panel">
           <SearchPanel onUpdateSearch={this.onUpdateSearch} />
-          <AppFilter />
+          <AppFilter filter={filter} onFilterSelect={this.onFilterSelect} />
         </div>
         <EmployeesList
           data={visibleData} //here there will still be an array only filtered by the line that comes to us from another component
